@@ -1,0 +1,6 @@
+<h1>Mutual Funds</h1>
+
+
+<div *ngFor="let fund of funds">
+    <a [routerLink]="['/funds', fund.id]">{{fund.title}}</a>
+</div>
