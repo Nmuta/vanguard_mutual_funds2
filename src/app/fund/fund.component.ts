@@ -40,6 +40,8 @@ export class FundComponent implements OnInit {
 
 
   update(): void {
+    this.convertTempFundList();
+
     this.fundService.updateFund(this.fund).subscribe(data =>{
       if(data){
         this.router.navigateByUrl("/funds");
@@ -47,6 +49,20 @@ export class FundComponent implements OnInit {
     })
   }
 
-  
+  convertTempFundList(){
+    const reconstitutedFund:any = {};
+    this.tempFundList.forEach(fund => {
+      reconstitutedFund[fund[0]] = fund[1];
+    })
+    this.fund = reconstitutedFund;
+  }
+
+  makeEditble (index: number){
+      this.tempFundList[index][2] = true;
+  }
+
+  makeStatic (index: number){
+    this.tempFundList[index][2] = false;
+  }
 
 }

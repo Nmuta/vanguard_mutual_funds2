@@ -1,12 +1,14 @@
-<p>Click to edit</p>
+<h1>Click an item edit</h1>
 
 
-<div>
-    TITLE: <input [(ngModel)]="fund.title" />
-</div>
-
-<div>
-    SUBTITLE: <input [(ngModel)]="fund.subtitle" />
+<div *ngFor="let fund of tempFundList, let i = index">
+    <div (click)="makeEditble(i)" *ngIf="fund[2]==false">
+        {{fund[0]}} : {{fund[1]}}   
+    </div>
+    <div *ngIf="fund[2]==true">
+        {{fund[0]}} : <input (blur)="makeStatic(i)" [(ngModel)]="fund[1]" />
+    </div>
+    <hr />
 </div>
 
 
