@@ -1,11 +1,13 @@
-<p>{{fund.title}}</p>
-
-<p>{{fund.id}}</p>
-
-<p>{{fund.subtitle}}</p>
+<p>Click to edit</p>
 
 
-<button (click)="edit()">edit this mutual fund</button>
+<div>
+    TITLE: <input [(ngModel)]="fund.title" />
+</div>
+
+<div>
+    SUBTITLE: <input [(ngModel)]="fund.subtitle" />
+</div>
 
 
-
+<button (click)="update()">update mutual fund</button>
