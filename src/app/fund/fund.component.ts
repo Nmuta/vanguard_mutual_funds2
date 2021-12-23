@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FundService } from '../fund.service';
 import { Fund } from './fund.model';
+import { HostListener } from '@angular/core';
 @Component({
   selector: 'app-fund',
   templateUrl: './fund.component.html',
@@ -10,18 +11,24 @@ import { Fund } from './fund.model';
 })
 export class FundComponent implements OnInit {
 
-  fund:Fund = {};
-   
-  // workingFund = {title: ["asdf", {editing: false}], 
-  //                subtitle: ["adsf", {editing: true}]
-  //               }
+ 
 
+  fund:Fund = {};
   tempFundList:any[][] = [];
+  key:any;
 
   constructor(private route:ActivatedRoute, 
     private fundService: FundService,
     private router: Router,
     ) { }
+
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) { 
+    this.key = event.key;
+    if(this.key === "Enter"){
+      this.update();
+    }
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params=>{
